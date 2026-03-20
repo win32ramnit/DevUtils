@@ -1,17 +1,25 @@
 package org.manish.utilix;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import org.manish.utilix.numbers.NumberUtils;
+import org.manish.utilix.text.StringUtils;
+import org.manish.utilix.time.DateTimeUtils;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+/**
+ * Simple entry point that demonstrates a few representative DevUtils operations.
+ */
+public final class Main {
+    private Main() {
+    }
+
+    /**
+     * Runs a small console demonstration of the library.
+     *
+     * @param args command-line arguments; not used
+     */
+    public static void main(String[] args) {
+        System.out.println("DevUtils sample");
+        System.out.println("slug = " + StringUtils.toKebabCase("Hello World"));
+        System.out.println("rounded = " + NumberUtils.round(10.345, 2));
+        System.out.println("timestamp = " + DateTimeUtils.formatInstant(DateTimeUtils.nowUtc()));
     }
 }

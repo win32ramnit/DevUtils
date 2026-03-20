@@ -49,3 +49,4 @@ bin/
 .DS_Store
 
 /.gradle/
+.gradle-user-home/

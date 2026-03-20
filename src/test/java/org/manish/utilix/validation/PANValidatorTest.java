@@ -35,7 +35,12 @@ class PANValidatorTest {
         assertFalse(PANValidator.isValidPAN("ABCDE1234F1")); // Extra character at the end
         assertFalse(PANValidator.isValidPAN("ABCDE1234F@")); // Special character
         assertFalse(PANValidator.isValidPAN("ABCDE1234F ")); // Trailing space
-        assertFalse(PANValidator.isValidPAN("ABCDE1234F"));  // Valid case
+        assertTrue(PANValidator.isValidPAN("ABCDE1234F"));  // Valid case
+    }
+
+    @Test
+    void testNullPAN() {
+        assertThrows(IllegalArgumentException.class, () -> PANValidator.isValidPAN(null));
     }
 
     @ParameterizedTest
@@ -46,7 +51,7 @@ class PANValidatorTest {
         "ABCDE1234G, true",
         "ABCDE1234, false",
         "ABCDE1234Fd, false",
-        " ABCDE1234F, false",
+        "' ABCDE1234F', false",
         "ABCDE 1234F, false",
         "ABCDE1234F!, false",
         "ABCDE1234F123, false"

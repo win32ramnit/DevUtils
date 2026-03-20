@@ -1,9 +1,15 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
 
 group = 'org.manish.utilix'
-version = '1.0-SNAPSHOT'
+version = '1.0.0'
+description = 'Production-oriented Java utility library for everyday development'
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
 
 repositories {
     mavenCentral()
@@ -12,8 +18,28 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-test {
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 8
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version,
+            'Automatic-Module-Name': 'org.manish.utilix'
+        )
+    }
+}
+
+tasks.withType(Test).configureEach {
     useJUnitPlatform()
 }
